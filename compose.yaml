@@ -1,0 +1,15 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: data-source-api
+    ports:
+      - "8000:8000"
+    environment:
+      S3_BUCKET: data-source-raw-alexandra-2026
+      AWS_DEFAULT_REGION: us-east-2
+      AWS_PROFILE: default
+    volumes:
+      - "${USERPROFILE}/.aws:/root/.aws:ro"
+    restart: unless-stopped
